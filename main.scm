@@ -9,10 +9,6 @@
 (import (chicken io))
 (import (chicken file))
 
-(newline)
-(print "----------- Scheme WC Tool ------------")
-(newline)
-
 (define cli-args-literal (command-line-arguments))
 
 (define (get-value ls)
@@ -46,6 +42,10 @@
   (for-each 
     (lambda (str) (set! word-count (+ word-count 1)))
     (string-split line " ")))
+
+(newline)
+(print "----------- Scheme WC Tool ------------")
+(newline)
 
 (iter-file count-words lines)
 
