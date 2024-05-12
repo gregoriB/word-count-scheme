@@ -1,10 +1,17 @@
-; (import scheme (chicken io))
+;; TODOS:
+;; Fix word count
+;; Char count
+;; Byte count
+;; Flags
+
 (import (chicken process-context))
 (import (chicken string))
 (import (chicken io))
 (import (chicken file))
 
-(print "Beginning Word Count")
+(newline)
+(print "----------- Scheme WC Tool ------------")
+(newline)
 
 (define cli-args-literal (command-line-arguments))
 
@@ -18,18 +25,11 @@
   (display "List: ")
   (print ls))
 
-(define (print-first ls)
-  (define first (get-value ls))
-  (cond ([string? first] (display "String: ") (print first))
-    (else (print "Not a string!: "))))
-
 (define (get-mode ls) (get-value ls))
 (define mode (get-mode cli-args-literal))
 
 (define (get-file-name ls) (get-value (get-next ls)))
 (define file-name (get-file-name cli-args-literal))
-
-(print file-name)
 
 (define file (open-input-file file-name))
 (define lines (read-lines file ))
@@ -44,15 +44,21 @@
 
 (define (count-words line)
   (for-each 
-    (lambda (str) (print str) (set! word-count (+ word-count 1)))
+    (lambda (str) (set! word-count (+ word-count 1)))
     (string-split line " ")))
 
 (iter-file count-words lines)
 
+(display "File: ")
+(print file-name)
+(newline)
 (display "Word Count: ")
 (print word-count)
 
 (display "Char Count: ")
-(print char-count)
+(print "TBD")
+;; TODO
+; (print char-count)
 
+(newline)
 (exit)
