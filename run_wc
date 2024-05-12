@@ -1,0 +1,12 @@
+chicken-csc main.scm
+
+testfile=./test.txt
+exefile=./main
+
+if [ -f "$exefile" ]
+then
+  ./main -c "$testfile"
+  rm main
+else 
+  echo "ERR: No main to remove"
+fi
