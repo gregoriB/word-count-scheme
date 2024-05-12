@@ -5,8 +5,8 @@ exefile=./main
 
 if [ -f "$exefile" ]
 then
-  ./main -c "$testfile"
-  rm main
+  "$exefile" -c "$testfile"
+  rm "$exefile"
 else 
-  echo "ERR: No main to remove"
+  echo "ERROR: No $exefile to remove"
 fi
